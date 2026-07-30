@@ -55,7 +55,8 @@
       "Bash(rm -f scratch-games.mjs g-games.png)",
       "Bash(taskkill //F //PID 2924)",
       "Bash(rm -f scratch-v3.mjs v3-*.png)",
-      "Bash(taskkill //F //PID 28516)"
+      "Bash(taskkill //F //PID 28516)",
+      "Bash(curl -s https://raw.githubusercontent.com/withastro/action/main/action.yml)"
     ]
   }
 }
