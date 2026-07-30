@@ -7,7 +7,7 @@ export interface Stat {
 }
 
 export const stats: Stat[] = [
-  { value: 10, suffix: '+', label: 'Games Shipped' },
+  { value: 50, suffix: '+', label: 'Projects Done' },
   { value: 4, suffix: '+', label: 'Years Building' },
-  { value: 1, label: 'App, Endless Replay' },
+  { value: 20, suffix: '+', label: 'Tools' },
 ];

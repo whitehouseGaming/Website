@@ -1,4 +1,6 @@
-// TODO_TIMELINE_DATA — placeholder milestones. Replace year/title/description with confirmed history.
+// Years are approximate per Ashu — the 2020/2021 start dates are firm, the later
+// corporate-era years are estimated from job order + duration, not confirmed calendar
+// dates. Nudge them if the exact years turn out different.
 export interface TimelineEntry {
   year: string;
   title: string;
@@ -7,23 +9,38 @@ export interface TimelineEntry {
 
 export const timeline: TimelineEntry[] = [
   {
-    year: 'TODO_YEAR',
-    title: 'First Unity project',
-    description: 'TODO_TIMELINE_DATA — earliest Unity/game-dev milestone worth mentioning.',
+    year: '2020',
+    title: 'YouTube Animation — 2D & 3D',
+    description: 'Started out making 2D and 3D animated videos using Blender, Adobe Animate, and Illustrator.',
   },
   {
-    year: 'TODO_YEAR',
-    title: 'Moved into XR/VR development',
-    description: 'TODO_TIMELINE_DATA — first Meta Quest / OpenXR / VR training project.',
+    year: '2021',
+    title: 'First Game: Pathru',
+    description: 'Shifted into game development and shipped my first game, Pathru — a rage-game platformer. Kept building personal game projects through 2023.',
   },
   {
-    year: 'TODO_YEAR',
-    title: 'Founded White House Gaming (OMG)',
-    description: 'TODO_TIMELINE_DATA — studio founding, first shipped titles.',
+    year: '2023',
+    title: 'VR Developer Intern',
+    description: 'Started my professional journey as a VR developer intern.',
   },
   {
-    year: 'TODO_YEAR',
-    title: 'Freelance & contract XR work',
-    description: 'TODO_TIMELINE_DATA — surgical/medical VR sims, multiplayer casino contracts, Meta Quest builds.',
+    year: '2023–24',
+    title: 'Slot Games Developer',
+    description: 'Spent a year building slot games.',
+  },
+  {
+    year: '2024–25',
+    title: 'VR Training Sim for Tejas, and Founding OMG GameHub',
+    description: "Built a VR training simulator for the Indian Air Force's Tejas Light Combat Aircraft, and founded the OMG GameHub project alongside it.",
+  },
+  {
+    year: '2025',
+    title: 'Multiplayer Casino Game Developer',
+    description: 'Spent a year building real-time multiplayer casino titles.',
+  },
+  {
+    year: '2026–Present',
+    title: 'Freelancing Under White House Gaming',
+    description: 'Now freelancing full-time under the White House Gaming banner — going on 4 years of freelance work in total.',
   },
 ];

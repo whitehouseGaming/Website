@@ -1,9 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import GameCard from '../../components/ui/GameCard.astro';
 import Button from '../../components/ui/Button.astro';
 import { getCollection } from 'astro:content';
 import { site } from '../../data/site';
+import omgLogo from '../../assets/images/OMGLOGO.webp';
 
 const games = (await getCollection('games')).sort((a, b) => a.data.order - b.data.order);
 
@@ -16,14 +18,17 @@ const bentoClass = (i: number) => {
 <BaseLayout title="GameHub" description="OMG GameHub — one app, 10+ hypercasual games, and a tournament system with real prizes.">
   <section class="relative border-b border-line pb-16 pt-32 sm:pt-40">
     <div class="mx-auto max-w-7xl px-6">
-      <p data-reveal class="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">OMG GameHub</p>
+      <div data-reveal class="flex items-center gap-3">
+        <Image src={omgLogo} alt="OMG GameHub" width={40} height={40} class="rounded-sm border border-line" />
+        <p class="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">OMG GameHub</p>
+      </div>
       <h1 data-reveal class="font-display mt-4 max-w-3xl text-5xl font-bold leading-[0.95] sm:text-7xl">
         One app. Every game. <span class="text-accent">Real prizes.</span>
       </h1>
       <p data-reveal class="mt-6 max-w-2xl text-lg text-ink-dim">
-        GameHub bundles 10+ hypercasual games into a single free app, with a built-in
-        tournament system where top players win mobile recharge prizes. Below is the full
-        lineup — each title has its own page with details and a direct Play Store link.
+        GameHub (One More Game) bundles 10+ hypercasual games into a single free app, with a
+        built-in tournament system where top players win mobile recharge prizes. Download the
+        app once, and every game below plays inside it.
       </p>
       <div data-reveal class="mt-8">
         {
@@ -38,6 +43,9 @@ const bentoClass = (i: number) => {
           )
         }
       </div>
+      <p data-reveal class="mt-4 text-xs text-ink-faint">
+        Tournament and recharge-prize rules are covered in our <a href="/terms" class="underline hover:text-accent">Terms &amp; Conditions</a>.
+      </p>
     </div>
   </section>
 
@@ -51,7 +59,7 @@ const bentoClass = (i: number) => {
               title={game.data.title}
               tagline={game.data.tagline}
               coverImage={game.data.coverImage}
-              isTodo={!game.data.playStoreUrl}
+              isTodo={game.data.placeholder}
               class={bentoClass(i)}
             />
           ))

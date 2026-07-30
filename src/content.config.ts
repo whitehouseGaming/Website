@@ -10,8 +10,8 @@ const games = defineCollection({
       coverImage: image().optional(),
       screenshots: z.array(image()).default([]),
       youtubeId: z.string().optional(),
-      playStoreUrl: z.string().url().optional(),
       featured: z.boolean().default(false),
+      placeholder: z.boolean().default(false),
       order: z.number().default(0),
     }),
 });

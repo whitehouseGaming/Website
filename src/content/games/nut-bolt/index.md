@@ -1,14 +1,14 @@
 ---
-title: Merge IT
+title: Nut Bolt
 tagline: 'TODO_GAME_DATA — confirm final tagline copy.'
 coverImage: ./cover.png
 featured: false
-order: 4
+order: 5
 ---
 
-Merge matching numbers to double their value and chase the highest tile — a 2048-style number merge puzzle.
+A relaxing screw-and-bolt puzzle — unscrew the right pins in the right order to clear each board.
 
 ## Features
 
-- Familiar merge-to-double mechanic
+- Satisfying, low-pressure puzzle mechanic
 - Part of the OMG GameHub bundle of hypercasual games

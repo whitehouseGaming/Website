@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const lastUpdated = 'TODO_DATE — set this to the date you actually publish these terms.';
+---
+
+<BaseLayout title="Terms &amp; Conditions" description="Terms and conditions for OMG GameHub, its tournaments, and mobile recharge prizes.">
+  <section class="relative py-32 sm:py-40">
+    <div class="mx-auto max-w-3xl px-6">
+      <p data-reveal class="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">Legal</p>
+      <h1 data-reveal class="font-display mt-4 text-4xl font-bold leading-[0.95] sm:text-6xl">
+        Terms &amp; Conditions
+      </h1>
+      <p data-reveal class="mt-4 text-sm text-ink-faint">Last updated: {lastUpdated}</p>
+
+      <div
+        data-reveal
+        class="mt-8 rounded-sm border border-dashed border-accent/60 bg-bg-raised p-5 text-sm leading-relaxed text-ink-dim"
+      >
+        <strong class="text-accent">TODO_LEGAL_REVIEW</strong> — this is a working draft, not
+        reviewed by a lawyer. Before this page goes live, have it checked against current Indian
+        law for skill-gaming/contest terms, state-wise restrictions, and tax treatment of prizes
+        (rules here change and vary by state). Everything below assumes tournament entry is{' '}
+        <strong class="text-ink">free</strong> — no payment, purchase, or stake is required to
+        play or to win.
+      </div>
+
+      <div class="prose-invert mt-12 max-w-2xl leading-relaxed text-ink-dim [&_h2]:font-display [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-ink [&_h3]:font-display [&_h3]:mt-6 [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-ink [&_li]:mt-1 [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:pl-5 [&_p]:mt-4">
+        <p>
+          These Terms &amp; Conditions ("Terms") govern use of the OMG GameHub mobile
+          application ("GameHub", "the App"), published by White House Gaming
+          ("we", "us", "our"), including the in-app tournament and leaderboard system that
+          awards mobile recharge prizes. By downloading, installing, or using the App, or by
+          entering a tournament, you agree to these Terms.
+        </p>
+
+        <h2>1. Eligibility</h2>
+        <ul>
+          <li>You must be at least 18 years old, or the age of majority in your jurisdiction, to enter a tournament or receive a prize.</li>
+          <li>You must be a resident of India with a valid, active Indian mobile number capable of receiving recharge.</li>
+          <li>Employees, contractors, and immediate family members of White House Gaming are not eligible to win tournament prizes.</li>
+          <li>We may restrict tournament participation in any state or region where such contests are limited or prohibited by local law.</li>
+        </ul>
+
+        <h2>2. Free Entry — No Purchase Necessary</h2>
+        <p>
+          Playing GameHub's games and competing on tournament leaderboards is free. No payment,
+          purchase, in-app currency, or deposit of any kind is required to enter a tournament or
+          to be eligible for a prize. Making an in-app purchase (if any exist elsewhere in the
+          App) does not improve your chances of winning and is never required to compete.
+        </p>
+
+        <h2>3. How Tournaments Work</h2>
+        <ul>
+          <li>Tournaments rank players by in-game score or performance over a stated period, shown on an in-app leaderboard.</li>
+          <li>Winners are determined solely by ranking at the close of the tournament period, as recorded by our systems.</li>
+          <li>We may run multiple tournaments across different games, with different schedules, rules, and prize amounts, communicated in-app at the time.</li>
+          <li>Our decision on scoring, rankings, and winners is final.</li>
+        </ul>
+
+        <h2>4. Prizes</h2>
+        <ul>
+          <li>Prizes consist of mobile recharge (talktime/data) credited to the mobile number registered on your winning account.</li>
+          <li>Prize values, denominations, and the number of winners per tournament will be stated in-app before or during the tournament.</li>
+          <li>Prizes are not transferable, not exchangeable for cash, and cannot be substituted except at our discretion.</li>
+          <li>Recharge fulfilment depends on your mobile operator and may take a reasonable time to process after a tournament closes.</li>
+          <li>Winners are solely responsible for any tax liability arising from prizes received. We may deduct tax at source and/or report winnings where required by applicable law.</li>
+        </ul>
+
+        <h2>5. Fair Play</h2>
+        <p>The following will disqualify an entry and may result in forfeiture of a prize already credited:</p>
+        <ul>
+          <li>Use of bots, scripts, emulator exploits, modified clients, or other automation.</li>
+          <li>Exploiting bugs or glitches to inflate score.</li>
+          <li>Operating multiple accounts to gain extra tournament entries.</li>
+          <li>Any other conduct we reasonably determine to be cheating or fraud.</li>
+        </ul>
+
+        <h2>6. Changes &amp; Termination</h2>
+        <p>
+          We may modify, suspend, or discontinue any tournament, prize structure, or these Terms
+          at any time, with notice provided in-app where reasonably possible. Continued use of
+          the App after changes take effect constitutes acceptance of the updated Terms.
+        </p>
+
+        <h2>7. Limitation of Liability</h2>
+        <p>
+          The App and tournaments are provided "as is." To the maximum extent permitted by law,
+          White House Gaming is not liable for delays or failures in prize fulfilment caused by
+          third parties (including mobile network operators), technical issues, or events
+          outside our reasonable control.
+        </p>
+
+        <h2>8. Governing Law</h2>
+        <p>
+          These Terms are governed by the laws of India. Any disputes are subject to the
+          exclusive jurisdiction of the courts at Varanasi, Uttar Pradesh.
+        </p>
+
+        <h2>9. Contact</h2>
+        <p>
+          Questions about tournaments, prizes, or these Terms can be sent to{' '}
+          <a href={`mailto:${site.email}`} class="text-accent underline">{site.email}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

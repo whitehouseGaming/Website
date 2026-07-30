@@ -2,7 +2,6 @@
 title: Water Mobile
 tagline: Beat the world record on the childhood classic.
 coverImage: ./cover.webp
-playStoreUrl: 'https://play.google.com/store/apps/details?id=com.DefaultCompany.WaterGAME&pcampaignid=web_share'
 featured: true
 order: 3
 ---

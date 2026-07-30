@@ -33,20 +33,24 @@ export interface ProvenWorkItem {
 
 export const provenWork: ProvenWorkItem[] = [
   {
-    title: 'VR Training Simulations',
-    description: 'Immersive procedural training environments built for Meta Quest, focused on repeatable scenario practice.',
+    title: 'Slot Game Development',
+    description: 'Built a slot game for a client sourced through Upwork.',
   },
   {
-    title: 'Surgical / Medical VR Simulations',
-    description: 'Precision-critical medical training builds where interaction fidelity and realism were non-negotiable.',
+    title: 'Strail VR — Surgical Sterilization Sim',
+    description: 'A VR simulation for sterilization of surgical equipment, built for an Upwork client.',
   },
   {
-    title: 'Multiplayer Casino Games',
-    description: 'Blackjack, Roulette, Teen Patti, Ludo and more — real-time multiplayer casino titles with live tables.',
+    title: 'VR Car Racing Simulator',
+    description: 'A separate VR car racing simulator project, delivered for an Upwork client.',
   },
   {
-    title: 'Meta Quest XR Contracts',
-    description: 'Standalone XR builds shipped directly to Meta Quest hardware for contract clients.',
+    title: 'Party Games Development',
+    description: 'Built party games for a client on Upwork.',
+  },
+  {
+    title: 'Meta Quest VR Development',
+    description: 'VR games and training simulations built for Meta Quest, including work on Quest 3.',
   },
 ];
 

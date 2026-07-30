@@ -1,8 +1,7 @@
 ---
 title: Balloon Splash
 tagline: Pop, splash, repeat — endless casual fun for all ages.
-coverImage: ./cover.webp
-playStoreUrl: 'https://play.google.com/store/apps/details?id=com.ZOne.BalloonSplash&pcampaignid=web_share'
+coverImage: ./cover.png
 featured: true
 order: 2
 ---

@@ -1,12 +1,15 @@
 ---
+export type ToolIcon = 'video' | 'invoice' | 'tasks' | 'camera';
+
 export interface Props {
   href: string;
   title: string;
   tagline: string;
   externalUrl?: string;
+  icon: ToolIcon;
 }
 
-const { href, title, tagline, externalUrl } = Astro.props;
+const { href, title, tagline, externalUrl, icon } = Astro.props;
 ---
 
 <div
@@ -16,7 +19,44 @@ const { href, title, tagline, externalUrl } = Astro.props;
   class="group flex flex-col justify-between rounded-sm border border-line bg-bg-raised p-6 transition-colors hover:border-accent"
 >
   <div>
-    <h3 class="glitch-hover font-display text-lg font-bold text-ink" data-text={title}>{title}</h3>
+    <span class="flex h-12 w-12 items-center justify-center rounded-sm border border-line text-accent transition-colors group-hover:border-accent">
+      {
+        icon === 'video' && (
+          <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="5.5" width="13" height="13" rx="1.5" />
+            <path d="M15.5 10.5l6-3.5v10l-6-3.5z" />
+          </svg>
+        )
+      }
+      {
+        icon === 'invoice' && (
+          <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2.5h9l3 3v16H6z" />
+            <path d="M9 8h6M9 12h6M9 16h4" />
+          </svg>
+        )
+      }
+      {
+        icon === 'tasks' && (
+          <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3.5" y="4" width="6" height="6" rx="1" />
+            <path d="M5.5 7l1 1 2-2" />
+            <path d="M12.5 6h8M3.5 15.5h6M12.5 15.5h8" />
+            <path d="M5 14.5v3M8 14.5v3" />
+          </svg>
+        )
+      }
+      {
+        icon === 'camera' && (
+          <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 8h3l1.5-2h7L17 8h3v11H4z" />
+            <circle cx="12" cy="13.5" r="3.2" />
+          </svg>
+        )
+      }
+    </span>
+
+    <h3 class="glitch-hover font-display mt-4 text-lg font-bold text-ink" data-text={title}>{title}</h3>
     <p class="mt-2 text-sm leading-relaxed text-ink-dim">{tagline}</p>
   </div>
   <div class="mt-6 flex items-center gap-4">

@@ -2,7 +2,6 @@
 title: Cup Matching
 tagline: A shuffling-cups puzzle challenge across 100+ levels.
 coverImage: ./cover.webp
-playStoreUrl: 'https://play.google.com/store/apps/details?id=com.imlab.cupGame&pcampaignid=web_share'
 featured: true
 order: 1
 ---

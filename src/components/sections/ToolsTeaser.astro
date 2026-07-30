@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import ToolCard from '../ui/ToolCard.astro';
+import Button from '../ui/Button.astro';
+
+const tools = (await getCollection('projects'))
+  .filter((p) => p.data.isTool)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+
+const toolIcons: Record<string, 'video' | 'invoice' | 'tasks' | 'camera'> = {
+  reelforge: 'video',
+  'screenshot-video-editor': 'camera',
+  'gst-bill-generator': 'invoice',
+  'task-manager': 'tasks',
+};
+---
+
+{
+  tools.length > 0 && (
+    <section class="relative border-b border-line py-24">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div data-reveal>
+            <p class="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">Beyond GameHub</p>
+            <h2 class="font-display mt-3 max-w-lg text-4xl font-bold leading-[0.95] sm:text-5xl">
+              Free tools, built and shipped.
+            </h2>
+          </div>
+          <Button href="/projects#tools" variant="ghost" class="shrink-0">View All Tools</Button>
+        </div>
+
+        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {tools.map((tool) => (
+            <ToolCard
+              href={`/projects/${tool.id}`}
+              title={tool.data.title}
+              tagline={tool.data.tagline}
+              externalUrl={tool.data.externalUrl}
+              icon={toolIcons[tool.id] ?? 'video'}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

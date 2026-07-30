@@ -1,6 +1,6 @@
 export const site = {
   name: 'White House Gaming',
-  shortName: 'OMG',
+  gameHubName: 'OMG GameHub',
   tagline: 'Indie game & XR studio building shipped products, not slideware.',
   email: 'ashutosh@whitehousegaming.com',
   phone: '+91 6386778316',

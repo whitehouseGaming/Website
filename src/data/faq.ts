@@ -24,4 +24,9 @@ export const faqs: FaqEntry[] = [
     answer:
       'Yes — OMG GameHub bundles 10+ hypercasual games into a single free app, with a tournament system offering mobile recharge prizes.',
   },
+  {
+    question: 'How do tournament recharge prizes work?',
+    answer:
+      'GameHub runs skill-based leaderboard tournaments inside the app; top-ranked players win mobile recharge prizes. Full eligibility rules and prize terms are on our Terms & Conditions page.',
+  },
 ];

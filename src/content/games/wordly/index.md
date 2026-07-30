@@ -1,14 +1,14 @@
 ---
-title: Merge IT
+title: Wordly
 tagline: 'TODO_GAME_DATA — confirm final tagline copy.'
 coverImage: ./cover.png
 featured: false
-order: 4
+order: 7
 ---
 
-Merge matching numbers to double their value and chase the highest tile — a 2048-style number merge puzzle.
+A 4-letter word guessing game — figure out the hidden word using color clues in a limited number of tries.
 
 ## Features
 
-- Familiar merge-to-double mechanic
+- Quick rounds, 4-letter words
 - Part of the OMG GameHub bundle of hypercasual games
