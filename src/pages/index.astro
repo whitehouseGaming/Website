@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import GameHubTeaser from '../components/sections/GameHubTeaser.astro';
+import ProofPoint from '../components/sections/ProofPoint.astro';
+import CtaBlock from '../components/sections/CtaBlock.astro';
+import Ticker from '../components/ui/Ticker.astro';
+import { site } from '../data/site';
+
+const tickerItems = [
+  'UNITY',
+  'BLENDER',
+  'VR / AR INTEGRATION',
+  'MULTIPLAYER SYSTEMS',
+  'PUBLISHING',
+  'SHIPPED ON PLAY STORE',
+];
+---
+
+<BaseLayout title={site.name} description={site.tagline}>
+  <Hero />
+  <div class="my-2 overflow-hidden">
+    <Ticker items={tickerItems} />
+  </div>
+  <GameHubTeaser />
+  <ProofPoint />
+  <CtaBlock />
+</BaseLayout>

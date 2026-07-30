@@ -1,0 +1,80 @@
+---
+export interface Props {
+  youtubeId: string;
+  title: string;
+  class?: string;
+}
+
+const { youtubeId, title, class: className = '' } = Astro.props;
+const isTodo = youtubeId.startsWith('TODO_');
+const thumbnail = `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`;
+---
+
+{
+  isTodo ? (
+    <div
+      class:list={[
+        'flex aspect-video w-full flex-col items-center justify-center gap-2 rounded-sm border border-dashed border-line bg-bg-raised text-center',
+        className,
+      ]}
+    >
+      <p class="font-display text-sm font-bold uppercase tracking-wide text-ink-faint">
+        Video Coming Soon
+      </p>
+      <p class="max-w-xs text-xs text-ink-faint">{title}</p>
+    </div>
+  ) : (
+    <button
+      type="button"
+      data-youtube-facade
+      data-youtube-id={youtubeId}
+      aria-label={`Play video: ${title}`}
+      class:list={[
+        'group relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-sm border border-line bg-bg-raised-2',
+        className,
+      ]}
+    >
+      <img
+        src={thumbnail}
+        alt={title}
+        loading="lazy"
+        decoding="async"
+        width="480"
+        height="270"
+        class="absolute inset-0 h-full w-full object-cover opacity-80 transition-opacity group-hover:opacity-100"
+      />
+      <span
+        class="relative flex h-16 w-16 items-center justify-center rounded-full bg-accent/90 text-accent-ink shadow-[0_0_30px_theme(colors.accent)] transition-transform group-hover:scale-110"
+        aria-hidden="true"
+      >
+        <svg viewBox="0 0 24 24" class="ml-1 h-6 w-6 fill-current">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+      </span>
+    </button>
+  )
+}
+
+<script>
+  function initYouTubeFacades() {
+    document.querySelectorAll<HTMLButtonElement>('[data-youtube-facade]').forEach((btn) => {
+      if (btn.dataset.bound) return;
+      btn.dataset.bound = 'true';
+
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.youtubeId;
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
+        iframe.title = btn.getAttribute('aria-label') ?? 'YouTube video';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.className = 'absolute inset-0 h-full w-full';
+        iframe.setAttribute('frameborder', '0');
+        btn.replaceWith(iframe);
+      });
+    });
+  }
+
+  initYouTubeFacades();
+  document.addEventListener('astro:page-load', initYouTubeFacades);
+</script>

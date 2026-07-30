@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+export interface Props {
+  href: string;
+  title: string;
+  tagline: string;
+  status: 'In Development' | 'Launched' | 'Concept';
+  coverImage?: ImageMetadata;
+  class?: string;
+}
+
+const { href, title, tagline, status, coverImage, class: className = '' } = Astro.props;
+
+const statusStyles: Record<Props['status'], string> = {
+  Launched: 'border-accent text-accent',
+  'In Development': 'border-accent/50 text-ink animate-glow-pulse',
+  Concept: 'border-ink-faint text-ink-faint',
+};
+---
+
+<a
+  href={href}
+  data-cursor-hover
+  data-tilt
+  data-reveal
+  class:list={[
+    'group relative flex flex-col overflow-hidden rounded-sm border border-line bg-bg-raised transition-colors duration-300 hover:border-accent',
+    className,
+  ]}
+>
+  <div class="relative aspect-[16/10] w-full overflow-hidden bg-bg-raised-2">
+    {
+      coverImage ? (
+        <Image
+          src={coverImage}
+          alt={title}
+          width={640}
+          height={400}
+          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+      ) : (
+        <div class="flex h-full w-full items-center justify-center bg-[repeating-linear-gradient(135deg,theme(colors.bg-raised-2),theme(colors.bg-raised-2)_10px,theme(colors.bg)_10px,theme(colors.bg)_11px)]">
+          <span class="font-display text-5xl font-bold text-ink-faint/70">
+            {title.charAt(0)}
+          </span>
+        </div>
+      )
+    }
+    <span
+      class:list={[
+        'font-display absolute left-4 top-4 -rotate-3 rounded-full border bg-bg/80 px-3 py-1 text-[11px] font-bold uppercase tracking-wide backdrop-blur-sm',
+        statusStyles[status],
+      ]}
+    >
+      {status}
+    </span>
+  </div>
+
+  <div class="flex flex-1 flex-col justify-between p-5">
+    <div>
+      <h3 class="glitch-hover font-display text-xl font-bold text-ink" data-text={title}>{title}</h3>
+      <p class="mt-2 text-sm leading-relaxed text-ink-dim">{tagline}</p>
+    </div>
+    <span class="font-display mt-4 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wide text-accent">
+      View Project <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">&rarr;</span>
+    </span>
+  </div>
+</a>

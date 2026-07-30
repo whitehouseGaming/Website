@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+export interface Props {
+  href: string;
+  title: string;
+  tagline: string;
+  coverImage?: ImageMetadata;
+  isTodo?: boolean;
+  class?: string;
+}
+
+const { href, title, tagline, coverImage, isTodo = false, class: className = '' } = Astro.props;
+---
+
+<a
+  href={isTodo ? undefined : href}
+  aria-disabled={isTodo}
+  data-cursor-hover
+  data-tilt
+  data-reveal
+  class:list={[
+    'group relative flex flex-col overflow-hidden rounded-sm border border-line bg-bg-raised transition-colors duration-300',
+    isTodo ? 'pointer-events-none opacity-50' : 'hover:border-accent',
+    className,
+  ]}
+>
+  <div class="relative aspect-[4/3] w-full overflow-hidden bg-bg-raised-2">
+    {
+      coverImage ? (
+        <Image
+          src={coverImage}
+          alt={title}
+          width={640}
+          height={480}
+          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+      ) : (
+        <div class="flex h-full w-full items-center justify-center">
+          <span class="font-display text-4xl font-bold text-ink-faint">?</span>
+        </div>
+      )
+    }
+    <div
+      class="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent opacity-80"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute inset-0 opacity-0 shadow-[inset_0_0_40px_theme(colors.accent)] transition-opacity duration-300 group-hover:opacity-40"
+    >
+    </div>
+  </div>
+
+  <div class="flex flex-1 flex-col justify-between p-5">
+    <div>
+      <h3 class="glitch-hover font-display text-xl font-bold text-ink" data-text={title}>{title}</h3>
+      <p class="mt-2 text-sm leading-relaxed text-ink-dim">{tagline}</p>
+    </div>
+    {
+      !isTodo && (
+        <span class="font-display mt-4 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wide text-accent">
+          View Game <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">&rarr;</span>
+        </span>
+      )
+    }
+  </div>
+</a>

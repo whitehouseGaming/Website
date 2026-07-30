@@ -1,0 +1,22 @@
+---
+export interface Props {
+  items: string[];
+  class?: string;
+}
+
+const { items, class: className = '' } = Astro.props;
+const loop = [...items, ...items];
+---
+
+<div class:list={['-rotate-1 border-y-2 border-accent bg-accent py-3', className]}>
+  <div class="flex w-max animate-marquee gap-8 whitespace-nowrap">
+    {
+      loop.map((item) => (
+        <span class="font-display flex items-center gap-8 text-sm font-bold uppercase tracking-wide text-accent-ink">
+          {item}
+          <span aria-hidden="true">&#9733;</span>
+        </span>
+      ))
+    }
+  </div>
+</div>

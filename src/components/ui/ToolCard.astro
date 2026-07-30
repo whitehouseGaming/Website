@@ -1,0 +1,41 @@
+---
+export interface Props {
+  href: string;
+  title: string;
+  tagline: string;
+  externalUrl?: string;
+}
+
+const { href, title, tagline, externalUrl } = Astro.props;
+---
+
+<div
+  data-cursor-hover
+  data-tilt
+  data-reveal
+  class="group flex flex-col justify-between rounded-sm border border-line bg-bg-raised p-6 transition-colors hover:border-accent"
+>
+  <div>
+    <h3 class="glitch-hover font-display text-lg font-bold text-ink" data-text={title}>{title}</h3>
+    <p class="mt-2 text-sm leading-relaxed text-ink-dim">{tagline}</p>
+  </div>
+  <div class="mt-6 flex items-center gap-4">
+    {
+      externalUrl ? (
+        <a
+          href={externalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-display inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wide text-accent"
+        >
+          Open Tool <span aria-hidden="true">&rarr;</span>
+        </a>
+      ) : (
+        <span class="font-display inline-block rounded-sm border border-dashed border-line px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-ink-faint">
+          TODO_TOOL_LINK
+        </span>
+      )
+    }
+    <a href={href} class="text-xs text-ink-faint transition-colors hover:text-accent">Details</a>
+  </div>
+</div>

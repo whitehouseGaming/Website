@@ -1,0 +1,64 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import DetailLayout from '../../layouts/DetailLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import YouTubeFacade from '../../components/ui/YouTubeFacade.astro';
+
+export async function getStaticPaths() {
+  const games = await getCollection('games');
+  return games.map((game) => ({
+    params: { slug: game.id },
+    props: { game },
+  }));
+}
+
+const { game } = Astro.props;
+const { Content } = await render(game);
+
+const relatedVideos = (await getCollection('videos')).filter(
+  (v) => v.data.relatedGame?.id === game.id,
+);
+---
+
+<DetailLayout
+  title={game.data.title}
+  tagline={game.data.tagline}
+  coverImage={game.data.coverImage}
+  backHref="/games"
+  backLabel="All Games"
+>
+  <span slot="badge" class="font-display inline-block -rotate-2 rounded-full border border-accent/60 px-3 py-1 text-xs font-bold uppercase tracking-wide text-accent">
+    OMG GameHub
+  </span>
+
+  <Fragment slot="cta">
+    {
+      game.data.playStoreUrl ? (
+        <Button href={game.data.playStoreUrl} variant="primary" external>
+          Play on Play Store
+        </Button>
+      ) : (
+        <span class="font-display inline-block rounded-sm border border-dashed border-line px-6 py-3 text-sm font-bold uppercase tracking-wide text-ink-faint">
+          TODO_GAME_DATA — no store link yet
+        </span>
+      )
+    }
+  </Fragment>
+
+  <Content />
+
+  <Fragment slot="videos">
+    {
+      relatedVideos.length > 0 && (
+        <div>
+          <h2 class="font-display text-2xl font-bold text-ink">Gameplay</h2>
+          <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {relatedVideos.map((video) => (
+              <YouTubeFacade youtubeId={video.data.youtubeId} title={video.data.title} />
+            ))}
+          </div>
+        </div>
+      )
+    }
+  </Fragment>
+</DetailLayout>

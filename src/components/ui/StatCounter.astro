@@ -1,0 +1,17 @@
+---
+export interface Props {
+  value: number;
+  suffix?: string;
+  prefix?: string;
+  label: string;
+}
+
+const { value, suffix = '', prefix = '', label } = Astro.props;
+---
+
+<div class="flex flex-col" data-reveal>
+  <p class="font-display text-5xl font-bold text-accent sm:text-6xl">
+    {prefix}<span data-stat-value={value} data-stat-suffix={suffix}>0{suffix}</span>
+  </p>
+  <p class="mt-2 text-sm uppercase tracking-wide text-ink-dim">{label}</p>
+</div>

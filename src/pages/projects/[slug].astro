@@ -1,0 +1,87 @@
+---
+import { getCollection, render } from 'astro:content';
+import DetailLayout from '../../layouts/DetailLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import YouTubeFacade from '../../components/ui/YouTubeFacade.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+const statusStyles: Record<string, string> = {
+  Launched: 'border-accent/60 text-accent',
+  'In Development': 'border-accent/40 text-ink',
+  Concept: 'border-ink-faint text-ink-faint',
+};
+
+const relatedVideos = (await getCollection('videos')).filter(
+  (v) => v.data.relatedProject?.id === project.id,
+);
+---
+
+<DetailLayout
+  title={project.data.title}
+  tagline={project.data.tagline}
+  coverImage={project.data.coverImage}
+  backHref="/projects"
+  backLabel="All Projects"
+>
+  <span
+    slot="badge"
+    class:list={[
+      'font-display inline-block -rotate-2 rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wide',
+      statusStyles[project.data.status],
+    ]}
+  >
+    {project.data.status}
+  </span>
+
+  <Fragment slot="cta">
+    {
+      project.data.externalUrl ? (
+        <Button href={project.data.externalUrl} variant="primary" external>
+          {project.data.isTool ? 'Open Tool' : 'View Live'}
+        </Button>
+      ) : (
+        project.data.isTool && (
+          <span class="font-display inline-block rounded-sm border border-dashed border-line px-6 py-3 text-sm font-bold uppercase tracking-wide text-ink-faint">
+            TODO_TOOL_LINK
+          </span>
+        )
+      )
+    }
+  </Fragment>
+
+  <Content />
+
+  {
+    project.data.techNotes && (
+      <div class="mt-8 rounded-sm border border-line bg-bg-raised p-5">
+        <p class="font-display text-xs font-bold uppercase tracking-wide text-ink-faint">Tech Notes</p>
+        <p class="mt-2 text-sm text-ink-dim">{project.data.techNotes}</p>
+      </div>
+    )
+  }
+
+  <Fragment slot="videos">
+    {
+      relatedVideos.length > 0 && (
+        <div>
+          <h2 class="font-display text-2xl font-bold text-ink">Devlog &amp; Demos</h2>
+          <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {relatedVideos.map((video) => (
+              <YouTubeFacade youtubeId={video.data.youtubeId} title={video.data.title} />
+            ))}
+          </div>
+        </div>
+      )
+    }
+  </Fragment>
+</DetailLayout>

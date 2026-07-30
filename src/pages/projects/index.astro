@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionDivider from '../../components/layout/SectionDivider.astro';
+import ToolCard from '../../components/ui/ToolCard.astro';
+import ProjectTimelineItem from '../../components/ui/ProjectTimelineItem.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const tools = allProjects.filter((p) => p.data.isTool).sort((a, b) => a.data.order - b.data.order);
+const timelineProjects = allProjects
+  .filter((p) => !p.data.isTool)
+  .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
+---
+
+<BaseLayout title="Projects" description="Free tools and in-progress projects from White House Gaming — HRMS SaaS, VR Driving School, JARVIS, and more.">
+  <section class="relative border-b border-line pb-16 pt-32 sm:pt-40">
+    <div class="mx-auto max-w-7xl px-6">
+      <p data-reveal class="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">Beyond GameHub</p>
+      <h1 data-reveal class="font-display mt-4 max-w-3xl text-5xl font-bold leading-[0.95] sm:text-7xl">
+        Tools &amp; <span class="text-accent">in-progress work.</span>
+      </h1>
+      <p data-reveal class="mt-6 max-w-2xl text-lg text-ink-dim">
+        A set of free tools built and shipped, plus the bigger projects currently in motion —
+        SaaS, VR, and desktop AI.
+      </p>
+    </div>
+  </section>
+
+  {
+    tools.length > 0 && (
+      <section class="py-16">
+        <div class="mx-auto max-w-7xl px-6">
+          <h2 data-reveal class="font-display text-2xl font-bold sm:text-3xl">
+            Free Tools
+          </h2>
+          <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {tools.map((tool) => (
+              <ToolCard
+                href={`/projects/${tool.id}`}
+                title={tool.data.title}
+                tagline={tool.data.tagline}
+                externalUrl={tool.data.externalUrl}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <SectionDivider />
+
+  <section class="relative bg-bg-raised/40 py-20">
+    <div class="mx-auto max-w-4xl px-6">
+      <h2 data-reveal class="font-display text-2xl font-bold sm:text-3xl">In Progress</h2>
+      <div class="relative mt-12 pl-2">
+        <div class="absolute left-0 top-1 bottom-0 w-px bg-line" aria-hidden="true"></div>
+        <div
+          data-timeline-line
+          class="absolute left-0 top-1 bottom-0 w-px origin-top scale-y-0 bg-accent shadow-[0_0_8px_theme(colors.accent)]"
+          aria-hidden="true"
+        >
+        </div>
+        {
+          timelineProjects.map((project) => (
+            <ProjectTimelineItem
+              href={`/projects/${project.id}`}
+              title={project.data.title}
+              tagline={project.data.tagline}
+              status={project.data.status}
+              date={project.data.date}
+              coverImage={project.data.coverImage}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,16 @@
+---
+export interface Props {
+  year: string;
+  title: string;
+  description: string;
+}
+
+const { year, title, description } = Astro.props;
+---
+
+<div data-timeline-item class="relative pl-10 pb-10 last:pb-0 opacity-0">
+  <span class="absolute left-0 top-1 h-3 w-3 -translate-x-1/2 rounded-full bg-accent shadow-[0_0_10px_theme(colors.accent)]"></span>
+  <p class="font-display text-xs font-bold uppercase tracking-wide text-accent">{year}</p>
+  <h3 class="font-display mt-1 text-xl font-bold text-ink">{title}</h3>
+  <p class="mt-2 max-w-lg text-sm leading-relaxed text-ink-dim">{description}</p>
+</div>

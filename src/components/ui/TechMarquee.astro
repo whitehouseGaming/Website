@@ -1,0 +1,17 @@
+---
+import { techLogos } from '../../data/skills';
+
+const items = [...techLogos, ...techLogos];
+---
+
+<div class="group relative overflow-hidden border-y border-line py-6">
+  <div class="flex w-max animate-marquee gap-16 group-hover:[animation-play-state:paused]">
+    {
+      items.map((name) => (
+        <span class="font-display shrink-0 text-2xl font-bold uppercase tracking-wide text-ink-faint transition-colors hover:text-accent">
+          {name}
+        </span>
+      ))
+    }
+  </div>
+</div>

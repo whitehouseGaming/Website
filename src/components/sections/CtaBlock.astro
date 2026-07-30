@@ -1,0 +1,19 @@
+---
+import Button from '../ui/Button.astro';
+---
+
+<section class="relative overflow-hidden py-24">
+  <div class="pointer-events-none absolute inset-0 diagonal-divider bg-bg-raised/40"></div>
+  <div class="relative mx-auto max-w-5xl px-6 text-center" data-reveal>
+    <h2 class="font-display text-4xl font-bold leading-[0.95] sm:text-6xl">
+      Build with us, <span class="text-accent">or bring us in.</span>
+    </h2>
+    <p class="mx-auto mt-5 max-w-lg text-ink-dim">
+      Join the studio as a collaborator, or bring White House Gaming onto your project.
+    </p>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+      <Button href="/join-us" variant="primary">Join Us</Button>
+      <Button href="/freelance" variant="ghost">Work With Us</Button>
+    </div>
+  </div>
+</section>
