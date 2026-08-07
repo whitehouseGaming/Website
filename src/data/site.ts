@@ -1,11 +1,13 @@
 export const site = {
   name: 'White House Gaming',
+  positioning: 'Independent Game Studio',
+  focus: 'Games · VR · Interactive Development',
   gameHubName: 'OMG GameHub',
-  tagline: 'Indie game & XR studio building shipped products, not slideware.',
-  email: 'ashutosh@whitehousegaming.com',
-  phone: '+91 6386778316',
-  location: 'Kotwan, Sarnath, Varanasi, India',
-  founder: 'Ashutosh Yadav (Ashu)',
+  tagline: 'White House Gaming is an independent game studio focused on Unity games, VR applications, WebGL experiences and interactive development.',
+  email: 'ashutoshyaa@gmail.com',
+  location: 'Based in India · Working Worldwide',
+  founder: 'Ashutosh Yadav',
+  founderTitle: 'Founder & Unity Developer',
   joinUsFormUrl: 'https://forms.gle/4RnGqCz8W3NJi4jVA',
   contactFormEmbedUrl:
     'https://docs.google.com/forms/d/e/1FAIpQLScORPWHawLmIfO-FScg1b-x2Eb2jMt9cZcDOYVtfd4EgNA0bg/viewform?embedded=true',

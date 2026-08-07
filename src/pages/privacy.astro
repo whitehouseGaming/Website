@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const lastUpdated = 'TODO_DATE — set this to the date you actually publish this policy.';
+---
+
+<BaseLayout title="Privacy Policy" description="How White House Gaming handles data across this website and the OMG GameHub app.">
+  <section class="relative py-32 sm:py-40">
+    <div class="mx-auto max-w-3xl px-6">
+      <p data-reveal class="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">Legal</p>
+      <h1 data-reveal class="font-display mt-4 text-4xl font-bold leading-[0.95] sm:text-6xl">
+        Privacy Policy
+      </h1>
+      <p data-reveal class="mt-4 text-sm text-ink-faint">Last updated: {lastUpdated}</p>
+
+      <div
+        data-reveal
+        class="mt-8 rounded-sm border border-dashed border-accent/60 bg-bg-raised p-5 text-sm leading-relaxed text-ink-dim"
+      >
+        <strong class="text-accent">TODO_LEGAL_REVIEW</strong> — this is a working draft, not
+        reviewed by a lawyer. Before publishing, confirm it against current Play Store data-safety
+        requirements, AdMob's child-directed treatment settings if GameHub is played by children,
+        and Indian data-protection law (DPDP Act) obligations.
+      </div>
+
+      <div class="prose-invert mt-12 max-w-2xl leading-relaxed text-ink-dim [&_h2]:font-display [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-ink [&_li]:mt-1 [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:pl-5 [&_p]:mt-4">
+        <p>
+          This policy covers two things: this website (whitehousegaming.com) and the OMG
+          GameHub mobile app, both published by White House Gaming ("we", "us", "our").
+        </p>
+
+        <h2>1. This Website</h2>
+        <p>
+          The site itself is static — it doesn't run its own tracking scripts or set analytics
+          cookies. Two parts of it hand off to third parties directly:
+        </p>
+        <ul>
+          <li>The contact and Join Us forms are Google Forms — submissions go directly to Google and to us; Google's own privacy policy governs that data.</li>
+          <li>Embedded videos load from YouTube on click, subject to YouTube's privacy policy.</li>
+          <li>GitHub Pages, our host, logs standard request data (like IP address) as part of serving the site.</li>
+        </ul>
+
+        <h2>2. OMG GameHub (the App)</h2>
+        <ul>
+          <li>GameHub shows ads via Google AdMob, which may collect an advertising identifier and usage data to serve and measure ads.</li>
+          <li>Tournament participation requires a mobile number, used solely to credit recharge prizes.</li>
+          <li>We do not sell personal data to third parties.</li>
+        </ul>
+
+        <h2>3. Children's Privacy</h2>
+        <p>
+          GameHub's games are hypercasual and may be played by a broad age range. TODO_LEGAL_REVIEW:
+          confirm whether AdMob's child-directed treatment should be enabled for some or all games,
+          and adjust data collection accordingly.
+        </p>
+
+        <h2>4. Your Choices</h2>
+        <ul>
+          <li>You can request what data we hold about you, or ask us to delete it, by emailing us.</li>
+          <li>Ad personalization can usually be limited from your device's ad settings (Android: Settings → Privacy → Ads).</li>
+        </ul>
+
+        <h2>5. Changes</h2>
+        <p>
+          We may update this policy as the app or site change. Material changes will be reflected
+          here with an updated date.
+        </p>
+
+        <h2>6. Contact</h2>
+        <p>
+          Questions about this policy or your data can be sent to{' '}
+          <a href={`mailto:${site.email}`} class="text-accent underline">{site.email}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

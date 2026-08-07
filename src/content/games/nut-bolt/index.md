@@ -1,6 +1,7 @@
 ---
 title: Nut Bolt
-tagline: 'TODO_GAME_DATA — confirm final tagline copy.'
+tagline: Unscrew the right pins in the right order to clear the board.
+genre: Puzzle
 coverImage: ./cover.png
 featured: false
 order: 5
@@ -11,4 +12,4 @@ A relaxing screw-and-bolt puzzle — unscrew the right pins in the right order t
 ## Features
 
 - Satisfying, low-pressure puzzle mechanic
-- Part of the OMG GameHub bundle of hypercasual games
+- Color-coded pins make every solution readable at a glance

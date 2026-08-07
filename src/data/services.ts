@@ -1,28 +1,34 @@
 export interface Service {
   title: string;
   description: string;
+  items: string[];
 }
 
 export const services: Service[] = [
   {
-    title: 'Game Development',
-    description: 'Unity & Unreal builds from prototype to store-ready release — hypercasual, multiplayer, and mid-core.',
+    title: 'Unity Game Development',
+    description: '2D and 3D games built end to end in Unity, from first prototype to store-ready release.',
+    items: ['2D games', '3D games', 'Gameplay systems', 'UI systems', 'Game mechanics', 'Prototypes', 'Existing-project development'],
   },
   {
-    title: 'AR / VR Development',
-    description: 'Meta Quest and OpenXR experiences — training simulations, interactive demos, and immersive product work.',
+    title: 'VR Development',
+    description: 'Unity VR applications for standalone and PC VR platforms, including Meta Quest.',
+    items: ['Unity VR', 'Meta Quest-targeted applications', 'Standalone VR', 'PC VR', 'Training simulations', 'Interactive VR experiences'],
   },
   {
-    title: '3D Modeling & Animation',
-    description: 'Asset creation and rigging/animation for in-game characters, props, and environments.',
+    title: 'Mobile & WebGL',
+    description: 'Cross-platform builds for phones and the browser.',
+    items: ['Android', 'iOS', 'WebGL', 'Browser-based Unity experiences'],
   },
   {
-    title: 'App Development',
-    description: 'Cross-platform mobile and desktop apps beyond games — dashboards, tools, and internal software.',
+    title: 'Interactive Applications',
+    description: 'Purpose-built interactive tools beyond games.',
+    items: ['Training', 'Education', 'Visualization', 'Simulation', 'Interactive 3D experiences'],
   },
   {
-    title: 'Multiplayer & Backend Integration',
-    description: 'Real-time netcode (Photon PUN/Fusion), FastAPI/MongoDB/Firebase backends, live-ops tooling.',
+    title: 'Technical Development',
+    description: 'Hands-on Unity engineering for projects already in motion.',
+    items: ['C#', 'Unity systems', 'Optimization', 'Bug fixing', 'Feature implementation', 'Performance improvements'],
   },
 ];
 

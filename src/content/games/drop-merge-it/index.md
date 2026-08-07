@@ -1,6 +1,7 @@
 ---
 title: Merge IT
-tagline: 'TODO_GAME_DATA — confirm final tagline copy.'
+tagline: Merge matching numbers, chase the highest tile.
+genre: Merge Puzzle
 coverImage: ./cover.png
 featured: false
 order: 4
@@ -11,4 +12,4 @@ Merge matching numbers to double their value and chase the highest tile — a 20
 ## Features
 
 - Familiar merge-to-double mechanic
-- Part of the OMG GameHub bundle of hypercasual games
+- Clean grid layout, easy to read at a glance

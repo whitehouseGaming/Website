@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title="Contact" description="Get in touch with White House Gaming about a game, VR experience, or interactive development project.">
+  <section class="relative py-32 sm:py-40">
+    <div class="mx-auto max-w-3xl px-6">
+      <p data-reveal class="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">
+        Contact
+      </p>
+      <h1 data-reveal class="font-display mt-4 text-4xl font-bold leading-[0.95] sm:text-6xl">
+        Let's Build Something
+      </h1>
+      <p data-reveal class="mt-6 max-w-xl text-lg text-ink-dim">
+        Have a game, VR experience, or interactive project in mind? Tell me what you're
+        building.
+      </p>
+
+      <div data-reveal class="mt-8 flex flex-wrap gap-4">
+        <a
+          href={`mailto:${site.email}`}
+          class="font-display inline-flex items-center gap-2 rounded-sm bg-accent px-6 py-3 text-sm font-bold uppercase tracking-wide text-accent-ink transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_25px_theme(colors.accent)]"
+        >
+          Start a Project
+        </a>
+        <a
+          href={site.socials.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-display inline-flex items-center gap-2 rounded-sm border border-line px-6 py-3 text-sm font-bold uppercase tracking-wide text-ink transition-colors hover:border-accent hover:text-accent"
+        >
+          LinkedIn
+        </a>
+      </div>
+
+      <p data-reveal class="mt-6 text-sm text-ink-dim">
+        <a href={`mailto:${site.email}`} class="transition-colors hover:text-accent">{site.email}</a>
+      </p>
+
+      <p data-reveal class="mt-2 text-xs font-bold uppercase tracking-wide text-ink-faint">
+        Usually replies within 1–2 business days &middot; {site.location}
+      </p>
+
+      <div data-reveal class="mt-10 overflow-hidden rounded-sm border border-line bg-bg-raised p-2">
+        <iframe
+          src={site.contactFormEmbedUrl}
+          width="100%"
+          height="760"
+          loading="lazy"
+          title="Contact form"
+          class="bg-transparent"
+        >
+          Loading…
+        </iframe>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

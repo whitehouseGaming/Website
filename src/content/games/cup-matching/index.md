@@ -1,6 +1,7 @@
 ---
 title: Cup Matching
 tagline: A shuffling-cups puzzle challenge across 100+ levels.
+genre: Puzzle
 coverImage: ./cover.webp
 featured: true
 order: 1
@@ -12,4 +13,4 @@ Take on the ultimate cup matching challenge in this exciting 2D puzzle game. Tes
 
 - 100+ hand-tuned levels, difficulty ramps steadily
 - Fast rounds built for quick replay sessions
-- Part of the OMG GameHub bundle of hypercasual games
+- Gets genuinely harder to track as the shuffle speeds up

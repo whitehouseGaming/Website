@@ -45,6 +45,24 @@ const relatedVideos = (await getCollection('videos')).filter(
     }
   </Fragment>
 
+  {
+    !game.data.placeholder && (
+      <div class="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-4">
+        {[
+          ['Genre', game.data.genre],
+          ['Platform', game.data.platform],
+          ['Engine', game.data.engine],
+          ['Status', 'Live in GameHub'],
+        ].map(([label, value]) => (
+          <div class="bg-bg-raised p-4">
+            <p class="font-display text-[11px] font-bold uppercase tracking-wide text-ink-faint">{label}</p>
+            <p class="font-display mt-1 text-sm font-bold text-ink">{value}</p>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
   <Content />
 
   <Fragment slot="videos">

@@ -6,12 +6,13 @@ export interface Props {
   href: string;
   title: string;
   tagline: string;
+  genre?: string;
   coverImage?: ImageMetadata;
   isTodo?: boolean;
   class?: string;
 }
 
-const { href, title, tagline, coverImage, isTodo = false, class: className = '' } = Astro.props;
+const { href, title, tagline, genre, coverImage, isTodo = false, class: className = '' } = Astro.props;
 ---
 
 <a
@@ -21,8 +22,8 @@ const { href, title, tagline, coverImage, isTodo = false, class: className = '' 
   data-tilt
   data-reveal
   class:list={[
-    'group relative flex flex-col overflow-hidden rounded-sm border border-line bg-bg-raised transition-colors duration-300',
-    isTodo ? 'pointer-events-none opacity-50' : 'hover:border-accent',
+    'group relative flex flex-col overflow-hidden rounded-sm border border-line bg-bg-raised transition-all duration-300',
+    isTodo ? 'pointer-events-none opacity-50' : 'hover:-translate-y-1 hover:border-accent hover:shadow-[0_18px_40px_-20px_theme(colors.accent)]',
     className,
   ]}
 >
@@ -50,6 +51,13 @@ const { href, title, tagline, coverImage, isTodo = false, class: className = '' 
       class="pointer-events-none absolute inset-0 opacity-0 shadow-[inset_0_0_40px_theme(colors.accent)] transition-opacity duration-300 group-hover:opacity-40"
     >
     </div>
+    {
+      genre && !isTodo && (
+        <span class="font-display absolute left-3 top-3 -rotate-2 rounded-full border border-line bg-bg/80 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-ink-dim backdrop-blur-sm">
+          {genre}
+        </span>
+      )
+    }
   </div>
 
   <div class="flex flex-1 flex-col justify-between p-5">

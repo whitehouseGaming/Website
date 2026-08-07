@@ -1,14 +1,21 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionDivider from '../../components/layout/SectionDivider.astro';
 import ToolCard from '../../components/ui/ToolCard.astro';
 import ProjectCard from '../../components/ui/ProjectCard.astro';
+import Button from '../../components/ui/Button.astro';
 import { getCollection } from 'astro:content';
+import omgLogo from '../../assets/images/OMGLOGO.webp';
 
 const allProjects = await getCollection('projects');
 const tools = allProjects.filter((p) => p.data.isTool).sort((a, b) => a.data.order - b.data.order);
-const upcomingProjects = allProjects
-  .filter((p) => !p.data.isTool)
+const nonTools = allProjects.filter((p) => !p.data.isTool);
+const vrInteractive = nonTools
+  .filter((p) => p.data.category === 'vr-interactive')
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const experiments = nonTools
+  .filter((p) => p.data.category === 'experiment')
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const toolIcons: Record<string, 'video' | 'invoice' | 'tasks' | 'camera'> = {
@@ -19,27 +26,103 @@ const toolIcons: Record<string, 'video' | 'invoice' | 'tasks' | 'camera'> = {
 };
 ---
 
-<BaseLayout title="Projects" description="Free tools and upcoming projects from White House Gaming — HRMS SaaS, VR Driving School, JARVIS, and more.">
+<BaseLayout title="Projects" description="Games, VR & interactive projects, experiments, and free tools built by White House Gaming.">
   <section class="relative border-b border-line pb-16 pt-32 sm:pt-40">
     <div class="mx-auto max-w-7xl px-6">
-      <p data-reveal class="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">Beyond GameHub</p>
+      <p data-reveal class="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">Projects</p>
       <h1 data-reveal class="font-display mt-4 max-w-3xl text-5xl font-bold leading-[0.95] sm:text-7xl">
-        Tools &amp; <span class="text-accent">upcoming work.</span>
+        Games, VR, <span class="text-accent">and everything in between.</span>
       </h1>
       <p data-reveal class="mt-6 max-w-2xl text-lg text-ink-dim">
-        A set of free tools built and shipped, plus the bigger projects currently in motion —
-        SaaS, VR, and desktop AI.
+        Original games under the OMG GameHub banner, VR and interactive builds, smaller
+        experiments, and a set of free tools shipped along the way.
       </p>
     </div>
   </section>
 
+  <section class="py-16">
+    <div class="mx-auto max-w-7xl px-6">
+      <h2 data-reveal class="font-display text-2xl font-bold sm:text-3xl">Games</h2>
+      <div
+        data-reveal
+        data-cursor-hover
+        class="group relative mt-8 flex flex-col items-start gap-6 overflow-hidden rounded-sm border border-line bg-bg-raised p-8 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div class="flex items-center gap-4">
+          <Image src={omgLogo} alt="OMG GameHub" width={64} height={64} class="rounded-sm border border-line" />
+          <div>
+            <h3 class="font-display text-xl font-bold text-ink">OMG GameHub</h3>
+            <p class="mt-1 max-w-md text-sm text-ink-dim">
+              Original games and independent projects created under White House Gaming — one
+              free app, 10+ hypercasual titles, and a tournament system.
+            </p>
+          </div>
+        </div>
+        <Button href="/games" variant="ghost" class="shrink-0">View All Games</Button>
+      </div>
+    </div>
+  </section>
+
+  {
+    vrInteractive.length > 0 && (
+      <section class="relative bg-bg-raised/40 py-16">
+        <div class="mx-auto max-w-7xl px-6">
+          <h2 data-reveal class="font-display text-2xl font-bold sm:text-3xl">VR &amp; Interactive</h2>
+          <p data-reveal class="mt-3 max-w-xl text-ink-dim">
+            VR applications, simulations, and interactive projects.
+          </p>
+          <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {vrInteractive.map((project) => (
+              <ProjectCard
+                href={`/projects/${project.id}`}
+                title={project.data.title}
+                tagline={project.data.tagline}
+                status={project.data.status}
+                coverImage={project.data.coverImage}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    experiments.length > 0 && (
+      <section class="py-16">
+        <div class="mx-auto max-w-7xl px-6">
+          <h2 data-reveal class="font-display text-2xl font-bold sm:text-3xl">Experiments</h2>
+          <p data-reveal class="mt-3 max-w-xl text-ink-dim">
+            Smaller prototypes and technical experiments.
+          </p>
+          <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {experiments.map((project) => (
+              <ProjectCard
+                href={`/projects/${project.id}`}
+                title={project.data.title}
+                tagline={project.data.tagline}
+                status={project.data.status}
+                coverImage={project.data.coverImage}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <SectionDivider />
+
   {
     tools.length > 0 && (
-      <section id="tools" class="py-16">
+      <section id="tools" class="relative bg-bg-raised/40 py-16">
         <div class="mx-auto max-w-7xl px-6">
           <h2 data-reveal class="font-display text-2xl font-bold sm:text-3xl">
             Free Tools
           </h2>
+          <p data-reveal class="mt-3 max-w-xl text-ink-dim">
+            Small utilities built and shipped for free, alongside the studio's main work.
+          </p>
           <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {tools.map((tool) => (
               <ToolCard
@@ -55,25 +138,4 @@ const toolIcons: Record<string, 'video' | 'invoice' | 'tasks' | 'camera'> = {
       </section>
     )
   }
-
-  <SectionDivider />
-
-  <section class="relative bg-bg-raised/40 py-20">
-    <div class="mx-auto max-w-7xl px-6">
-      <h2 data-reveal class="font-display text-2xl font-bold sm:text-3xl">Upcoming Projects</h2>
-      <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {
-          upcomingProjects.map((project) => (
-            <ProjectCard
-              href={`/projects/${project.id}`}
-              title={project.data.title}
-              tagline={project.data.tagline}
-              status={project.data.status}
-              coverImage={project.data.coverImage}
-            />
-          ))
-        }
-      </div>
-    </div>
-  </section>
 </BaseLayout>

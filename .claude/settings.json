@@ -56,7 +56,13 @@
       "Bash(taskkill //F //PID 2924)",
       "Bash(rm -f scratch-v3.mjs v3-*.png)",
       "Bash(taskkill //F //PID 28516)",
-      "Bash(curl -s https://raw.githubusercontent.com/withastro/action/main/action.yml)"
+      "Bash(curl -s https://raw.githubusercontent.com/withastro/action/main/action.yml)",
+      "Bash(nslookup whitehousegaming.com)",
+      "Bash(nslookup www.whitehousegaming.com)",
+      "Bash(curl -sI --max-time 8 https://whitehousegaming.com)",
+      "Bash(curl -s --max-time 8 https://whitehousegaming.github.io/Website/)",
+      "Bash(rm -f scratch-audit.mjs a-*.png)",
+      "Bash(taskkill //F //PID 16380)"
     ]
   }
 }

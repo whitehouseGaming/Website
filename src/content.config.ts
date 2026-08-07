@@ -7,6 +7,9 @@ const games = defineCollection({
     z.object({
       title: z.string(),
       tagline: z.string(),
+      genre: z.string().default('Hypercasual'),
+      platform: z.string().default('Android'),
+      engine: z.string().default('Unity'),
       coverImage: image().optional(),
       screenshots: z.array(image()).default([]),
       youtubeId: z.string().optional(),
@@ -23,6 +26,7 @@ const projects = defineCollection({
       title: z.string(),
       tagline: z.string(),
       status: z.enum(['In Development', 'Launched', 'Concept']),
+      category: z.enum(['vr-interactive', 'experiment']).default('experiment'),
       coverImage: image().optional(),
       youtubeId: z.string().optional(),
       techNotes: z.string().optional(),

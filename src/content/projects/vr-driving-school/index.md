@@ -2,6 +2,7 @@
 title: VR Driving School Simulator
 tagline: A B2C Meta Quest driving simulator for learner drivers.
 status: In Development
+category: vr-interactive
 date: 2026-01-01
 order: 2
 ---

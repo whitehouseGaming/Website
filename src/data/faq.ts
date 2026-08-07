@@ -7,12 +7,12 @@ export const faqs: FaqEntry[] = [
   {
     question: 'Do you work with startups?',
     answer:
-      'Yes — White House Gaming regularly partners with early-stage startups on game builds, XR prototypes, and app development, working within lean budgets and fast timelines.',
+      'Yes — White House Gaming takes on work with early-stage startups on game builds, XR prototypes, and app development, working within lean budgets and fast timelines.',
   },
   {
     question: 'Can I intern remotely?',
     answer:
-      'Yes. The studio is small and fast-moving, and remote collaborators are welcome — see the Join Us page to apply through our form.',
+      "Occasionally — remote collaborators are considered on a case-by-case basis. Reach out through the Contact page with what you're looking for.",
   },
   {
     question: "What's a typical project timeline?",

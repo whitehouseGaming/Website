@@ -70,6 +70,26 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Baseline keyboard-focus visibility for interactive elements that don't define their own */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Respect reduced-motion preference: kill decorative/continuous animation, keep instant state changes */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Grain overlay: fixed, non-interactive, applied once in BaseLayout */
 .grain-overlay {
   position: fixed;

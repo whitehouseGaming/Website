@@ -3,7 +3,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 function initStatCounters() {
+  const instant = reduceMotion();
   document.querySelectorAll<HTMLElement>('[data-stat-value]').forEach((el) => {
     if (el.dataset.bound) return;
     el.dataset.bound = 'true';
@@ -14,7 +17,7 @@ function initStatCounters() {
 
     gsap.to(counter, {
       value: target,
-      duration: 1.6,
+      duration: instant ? 0.01 : 1.6,
       ease: 'power2.out',
       scrollTrigger: { trigger: el, start: 'top 85%', once: true },
       onUpdate: () => {
@@ -25,6 +28,7 @@ function initStatCounters() {
 }
 
 function initTimelineDraw() {
+  const instant = reduceMotion();
   const line = document.querySelector<SVGLineElement | HTMLElement>('[data-timeline-line]');
   const items = document.querySelectorAll<HTMLElement>('[data-timeline-item]');
   if (line && !line.dataset.bound) {
@@ -36,12 +40,9 @@ function initTimelineDraw() {
         scaleY: 1,
         transformOrigin: 'top',
         ease: 'none',
-        scrollTrigger: {
-          trigger: line,
-          start: 'top 80%',
-          end: 'bottom 60%',
-          scrub: 0.5,
-        },
+        scrollTrigger: instant
+          ? { trigger: line, start: 'top 80%', once: true }
+          : { trigger: line, start: 'top 80%', end: 'bottom 60%', scrub: 0.5 },
       },
     );
   }
@@ -54,8 +55,8 @@ function initTimelineDraw() {
       {
         opacity: 1,
         x: 0,
-        duration: 0.6,
-        delay: i * 0.05,
+        duration: instant ? 0.01 : 0.6,
+        delay: instant ? 0 : i * 0.05,
         ease: 'power2.out',
         scrollTrigger: { trigger: item, start: 'top 85%', once: true },
       },
@@ -64,17 +65,18 @@ function initTimelineDraw() {
 }
 
 function initReveals() {
+  const instant = reduceMotion();
   document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el, i) => {
     if (el.dataset.bound) return;
     el.dataset.bound = 'true';
     gsap.fromTo(
       el,
-      { opacity: 0, y: 28 },
+      { opacity: 0, y: instant ? 0 : 28 },
       {
         opacity: 1,
         y: 0,
-        duration: 0.7,
-        delay: (i % 6) * 0.06,
+        duration: instant ? 0.01 : 0.7,
+        delay: instant ? 0 : (i % 6) * 0.06,
         ease: 'power3.out',
         scrollTrigger: { trigger: el, start: 'top 88%', once: true },
       },
@@ -84,6 +86,7 @@ function initReveals() {
 
 function initTilt() {
   if (!window.matchMedia('(pointer: fine) and (hover: hover)').matches) return;
+  if (reduceMotion()) return;
 
   document.querySelectorAll<HTMLElement>('[data-tilt]').forEach((card) => {
     if (card.dataset.tiltBound) return;
@@ -110,13 +113,14 @@ function initTilt() {
 }
 
 function initHeroText() {
+  const instant = reduceMotion();
   document.querySelectorAll<HTMLElement>('[data-hero-line]').forEach((el, i) => {
     if (el.dataset.bound) return;
     el.dataset.bound = 'true';
     gsap.fromTo(
       el,
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 0.8, delay: i * 0.12, ease: 'power3.out' },
+      { opacity: 0, y: instant ? 0 : 40 },
+      { opacity: 1, y: 0, duration: instant ? 0.01 : 0.8, delay: instant ? 0 : i * 0.12, ease: 'power3.out' },
     );
   });
 }

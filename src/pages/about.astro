@@ -6,7 +6,7 @@ import SectionDivider from '../components/layout/SectionDivider.astro';
 import TechMarquee from '../components/ui/TechMarquee.astro';
 import TimelineItem from '../components/ui/TimelineItem.astro';
 import Button from '../components/ui/Button.astro';
-import { skills } from '../data/skills';
+import { skills, techCategories } from '../data/skills';
 import { timeline } from '../data/timeline';
 import { site } from '../data/site';
 
@@ -17,15 +17,16 @@ const photoModules = import.meta.glob<{ default: ImageMetadata }>(
 const photo = Object.values(photoModules)[0]?.default;
 ---
 
-<BaseLayout title="About" description="Ashutosh Yadav (Ashu) — Unity/VR/XR developer running White House Gaming, a one-person indie studio.">
+<BaseLayout title="About" description="Ashutosh Yadav — Founder & Unity Developer at White House Gaming, an independent game studio.">
   <section class="relative border-b border-line pb-20 pt-32 sm:pt-40">
     <div class="mx-auto max-w-7xl px-6">
       <p data-reveal class="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">
         About Me
       </p>
       <h1 data-reveal class="font-display mt-4 max-w-3xl text-5xl font-bold leading-[0.95] sm:text-7xl">
-        I'm Ashu. <span class="text-accent">I build things.</span>
+        Ashutosh Yadav
       </h1>
+      <p data-reveal class="font-display mt-2 text-lg font-bold text-accent">Founder &amp; Unity Developer</p>
 
       <div class="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[240px_1fr] lg:items-start">
         <div data-reveal class="relative mx-auto w-56 -rotate-2 sm:mx-0 lg:w-full">
@@ -53,16 +54,17 @@ const photo = Object.values(photoModules)[0]?.default;
 
         <div class="flex flex-col gap-6">
           <p data-reveal class="text-lg leading-relaxed text-ink-dim">
-            I'm <strong class="text-ink">Ashutosh Yadav (Ashu)</strong>, a Unity/VR/XR
-            developer with 4+ years of experience shipping products end to end — prototype,
-            playtest, ship, iterate. I run <strong class="text-ink">White House Gaming</strong>,
-            a small indie studio — it's just me — where I build and publish
-            <strong class="text-ink">OMG GameHub</strong>, alongside contract Unity/VR/XR work
-            for clients worldwide.
+            <strong class="text-ink">White House Gaming</strong> is the independent studio of
+            <strong class="text-ink">Ashutosh Yadav</strong>, a Unity developer focused on
+            building games, immersive VR experiences, and interactive applications. Across 4+
+            years of hands-on development, that's covered 2D and 3D game development, mobile
+            and WebGL builds, VR/AR and training simulations, 3D workflows, and performance
+            optimization — prototype to ship, end to end.
           </p>
           <p data-reveal class="text-ink-dim">
-            From hypercasual mobile hits to surgical VR simulations and multiplayer casino
-            builds, my focus stays the same: ship real, playable things — not decks.
+            The studio combines original game development — including
+            <strong class="text-ink">OMG GameHub</strong> — with selected freelance and client
+            development work.
           </p>
           <div data-reveal>
             {
@@ -80,10 +82,24 @@ const photo = Object.values(photoModules)[0]?.default;
         </div>
       </div>
 
-      <div class="mt-14 flex flex-wrap gap-3" data-reveal>
+      <p data-reveal class="mt-14 font-display text-xs font-bold uppercase tracking-[0.2em] text-ink-faint">
+        Technology
+      </p>
+      <div class="mt-4 grid grid-cols-1 gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2 lg:grid-cols-5">
+        {
+          techCategories.map((tech) => (
+            <div data-reveal class="bg-bg-raised p-5">
+              <h3 class="font-display text-sm font-bold text-ink">{tech.title}</h3>
+              <p class="mt-2 text-xs leading-relaxed text-ink-dim">{tech.description}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-2" data-reveal>
         {
           skills.map((skill) => (
-            <span class="font-display rounded-full border border-line px-4 py-2 text-xs font-bold uppercase tracking-wide text-ink-dim transition-colors hover:border-accent hover:text-accent">
+            <span class="font-display rounded-full border border-line px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-ink-faint transition-colors hover:border-accent hover:text-accent">
               {skill}
             </span>
           ))
@@ -94,9 +110,58 @@ const photo = Object.values(photoModules)[0]?.default;
 
   <SectionDivider />
 
+  <section class="relative py-20">
+    <div class="mx-auto max-w-7xl px-6">
+      <p data-reveal class="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">Independent by Design</p>
+      <h2 data-reveal class="font-display mt-3 max-w-2xl text-3xl font-bold leading-[1.05] sm:text-5xl">
+        Small studio. No shortcuts.
+      </h2>
+      <p data-reveal class="mt-5 max-w-2xl text-ink-dim">
+        White House Gaming is intentionally independent — projects are built directly by the
+        developer behind the studio. That means direct communication, hands-on development,
+        flexible collaboration, and technical ownership from first prototype to final build.
+      </p>
+
+      <div class="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+        {
+          [
+            {
+              title: 'Ship, Then Iterate',
+              body: 'A game either survives contact with real players or it doesn’t. I’d rather find out in week two than month six.',
+            },
+            {
+              title: 'Players First',
+              body: 'Retention beats hype. If a mechanic doesn’t earn a second session, it doesn’t ship.',
+            },
+            {
+              title: 'Polish Is the Product',
+              body: 'Hypercasual lives or dies on feel — input latency, juice, and load times get the same attention as the core loop.',
+            },
+            {
+              title: 'One Person, Full Stack',
+              body: 'No hand-offs, no meetings about meetings. Design, code, art direction, and publishing sit with one person — that’s the point.',
+            },
+          ].map((principle, i) => (
+            <div data-reveal class="bg-bg-raised p-7 transition-colors hover:bg-bg-raised-2">
+              <p class="font-display text-xs font-bold text-ink-faint">{String(i + 1).padStart(2, '0')}</p>
+              <h3 class="font-display mt-3 text-lg font-bold text-ink">{principle.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-ink-dim">{principle.body}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <p data-reveal class="mx-auto mt-10 max-w-2xl text-center text-ink-dim">
+        That's the difference between White House Gaming and a studio with a pipeline: every
+        decision is one conversation, not five.
+      </p>
+    </div>
+  </section>
+
   <section class="relative bg-bg-raised/40 py-20">
     <div class="mx-auto max-w-4xl px-6">
-      <h2 data-reveal class="font-display text-3xl font-bold sm:text-4xl">Career Timeline</h2>
+      <p data-reveal class="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">Our Story</p>
+      <h2 data-reveal class="font-display mt-3 text-3xl font-bold sm:text-4xl">Career Timeline</h2>
 
       <div class="relative mt-12 pl-2">
         <div class="absolute left-0 top-1 bottom-0 w-px bg-line" aria-hidden="true"></div>
